@@ -1,0 +1,29 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-moroccanshop-staging-202603-authRole",
+      "UnauthRoleArn": "arn:aws:iam::431382672360:role/amplify-moroccanshop-staging-202603-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::431382672360:role/amplify-moroccanshop-staging-202603-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-moroccanshop-staging-202603-deployment",
+      "UnauthRoleName": "amplify-moroccanshop-staging-202603-unauthRole",
+      "StackName": "amplify-moroccanshop-staging-202603",
+      "StackId": "arn:aws:cloudformation:us-east-2:431382672360:stack/amplify-moroccanshop-staging-202603/ebe002a0-57f3-11ee-9b80-025a88ea1df3",
+      "AmplifyAppId": "d1711rqmu9ekvk"
+    },
+    "categories": {
+      "auth": {
+        "MoroccanShop": {}
+      },
+      "api": {
+        "MoroccanShop": {}
+      },
+      "function": {
+        "moroccanshop6c4868bf": {
+          "deploymentBucketName": "amplify-moroccanshop-staging-202603-deployment",
+          "s3Key": "amplify-builds/moroccanshop6c4868bf-356d7958753376506236-build.zip"
+        }
+      }
+    }
+  }
+}

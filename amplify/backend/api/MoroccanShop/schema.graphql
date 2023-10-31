@@ -1,0 +1,55 @@
+type Mutation {
+  createPaymentIntent(amount: Int!): PaymentIntent! @function(name: "moroccanshop6c4868bf-${env}")
+}
+
+type PaymentIntent {
+  clientSecret: String!
+}
+
+
+type Product @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  description: String
+  quantity: Int!
+  image: String!
+  images: [String!]!
+  options: [String!]
+  avgRating: Float
+  ratings: Int
+  price: Float!
+  oldPrice: Float
+  origin: String!
+  seller: String!
+  shippingCost: Float
+  
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  generatedID: String
+  userSub: String!
+  fullName: String!
+  phoneNumber: String
+  country: String
+  city: String
+  address: String
+  orderproducts: [SelectedProduct] @hasMany
+  isShipped: Boolean
+  totalPrice: Float!
+}
+
+
+type SelectedProduct @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  quantity: Int!
+  image: String!
+  options: String
+  price: Float!
+  origin: String!
+  seller: String!
+  shippingCost: Float
+  
+}
+

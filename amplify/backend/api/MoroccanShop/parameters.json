@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "MoroccanShop",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2023-09-23T08:16:31.092Z"
+}

@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "moroccanShop001",
-    "slug": "moroccanShop001",
-    "version": "1.0.0",
+    "name": "Moroccan Treasures",
+    "slug": "57e44eed-9c03-49f5-8e08-0f298227ec73",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -17,14 +17,21 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
+    "android": { 
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "io.expo.moroccanShop",
+      "versionCode" : 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "88a41ad6-2191-41e2-8ec7-551dd7a3b1ad"
+      }
     }
   }
 }

@@ -1,0 +1,15 @@
+export const Color = {
+  primary: "#000666*",
+  white: "effFFFF",
+  black: "*000000",
+  errorRed: "#F74241",
+  regentGray: "#718187",
+  darkGray: "*333333",
+  gray: "rgb (51, 51, 51)",
+  lightGray: "#666666",
+  blue: "#301C89",
+  lightBlue: "#624488",
+  green: "#44883E",
+  lightGreen: "#00B249",
+  lightBlack: "rgba(0,0,0,0)",
+};
