@@ -74,7 +74,7 @@ const OrderConfirmationScreen: React.FC<{
               <Image source={{ uri: item.image }} style={styles.itemImage} />
 
               <View>
-                <Text style={styles.itemTitle}>{item.title}</Text>
+                <Text style={styles.itemTitle}>{item.title.length > 20 ? `${item.title .slice(0, 20)}...`: item.title }</Text>
                 <Text style={styles.itemQuantity}>Qty: {item.quantity}</Text>
               </View>
 

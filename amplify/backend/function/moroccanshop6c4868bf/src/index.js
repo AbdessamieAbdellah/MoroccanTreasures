@@ -1,7 +1,7 @@
 
-import {STRIPELIVEKEY} from "@env";
+// import {STRIPELIVEKEY} from "@env";
 
-const stripe = require('stripe')(STRIPELIVEKEY)
+const stripe = require('stripe')("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")
 
 
 // event

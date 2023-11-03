@@ -14,7 +14,11 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     textDecorationLine: 'line-through',
   },
-  title: {},
+  title: {
+    fontSize:20,
+    fontWeight:'700',
+    color:'green'
+  },
   description: {
     marginVertical: 10,
     lineHeight: 20,

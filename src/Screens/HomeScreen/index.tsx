@@ -1,6 +1,6 @@
 import '@azure/core-asynciterator-polyfill';
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, Alert } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text, Alert, ActivityIndicator } from 'react-native';
 import ProductItem from '../../Components/ProductItem/ProductItem';
 import { DataStore } from '@aws-amplify/datastore';
 import { Product } from '../../models';
@@ -18,6 +18,21 @@ const HomeScreen = ({ searchValue }: { searchValue: string }) => {
   const [showCustomAlert, setShowCustomAlert] = useState(false);
   const [alertShown, setAlertShown] = useState(false);
 
+if(products.length < 0){
+  return <ActivityIndicator/>;
+}
+
+  const filteredProducts = activeTab === "🇲🇦 Stock"
+    ? products.filter(item => item.description.includes("MA"))
+    : products.filter(item => item.description.includes("US"));
+
+  // Filter products based on the search input in the title property
+  const searchedProducts = filteredProducts.filter(item =>
+    item.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
+
+
   useEffect(() => {
     const fetchProducts = async () => {
       const results = await DataStore.query(Product);
@@ -29,17 +44,7 @@ const HomeScreen = ({ searchValue }: { searchValue: string }) => {
       setAlertShown(true);
     }
    
-  }, [activeTab, alertShown]);
-
-  const filteredProducts = activeTab === "🇲🇦 Stock"
-    ? products.filter(item => item.description.includes("MA"))
-    : products.filter(item => item.description.includes("US"));
-
-  // Filter products based on the search input in the title property
-  const searchedProducts = filteredProducts.filter(item =>
-    item.title.toLowerCase().includes(searchInput.toLowerCase())
-  );
-
+  }, [products, activeTab, alertShown]);
   return (
     <View style={styles.page}>
       <View style={styles.headerContainer}>
@@ -60,6 +65,7 @@ const HomeScreen = ({ searchValue }: { searchValue: string }) => {
         data={searchedProducts}
         renderItem={({ item }) => <ProductItem item={item} />}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom:40}}
       />
         <CustomAlert
         visible={showCustomAlert}

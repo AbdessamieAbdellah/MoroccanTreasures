@@ -40,9 +40,9 @@ const ProductScreen = () => {
   
 
   const onAddToCart = async () => {
-    const userData = await Auth.currentAuthenticatedUser();
+    // const userData = await Auth.currentAuthenticatedUser();
 
-    if (!product || !userData) {
+    if (!product ) {
       return;
     }
     
@@ -52,13 +52,18 @@ const ProductScreen = () => {
     //   option: selectedOption,
     //   productID: product.id,
     // });
-
+    function generateShortUniqueId() {
+      // Generate a random 8-character alphanumeric string.
+      const randomString = Math.random().toString(36).substr(2, 8);
+    
+      return randomString;
+    }
    
     dispatch({
       type: "ADD",
       payload: {
       product: product,
-      userSub: userData.attributes.sub,
+      userSub: `Guest N:${generateShortUniqueId()}`,
       quantity:quantity ,
       option: selectedOption,
       productID: product.id,
@@ -70,7 +75,8 @@ const ProductScreen = () => {
    
 
    
-setQuantity(1)
+setQuantity(1);
+setSelectedOption(undefined);
 
     // await DataStore.save(newCartProduct);
     navigation.navigate('ShopingCart');
@@ -119,7 +125,7 @@ setQuantity(1)
       <Button
         text={'Add To Cart'}
         onPress={onAddToCart}
-        containerStyles={{backgroundColor: '#e3c905'}}
+        containerStyles={{backgroundColor: '#00FF00', marginBottom:30}}
       />
       {/* <Button
         text={'Buy Now'}

@@ -29,10 +29,13 @@ const countries = countryList.getData();
 const AddressScreen = () => {
   const [country, setCountry] = useState(countries[232].code);
   const [fullname, setFullname] = useState('');
+  const [addressEmail, setAddressEmail] = useState('');
   const [phone, setPhone] = useState('');
 
   const [address, setAddress] = useState('');
   const [addressError, setAddressError] = useState('');
+  const [emailAddressError, setEmailddressError] = useState('');
+
 
   const [city, setCity] = useState('');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -91,54 +94,34 @@ const AddressScreen = () => {
     }
   };
 
-//   const openPaymentSheet = async () => {
-//     if (!clientSecret) {
-//       return;
-//     }
-//     const {error} = await presentPaymentSheet({clientSecret});
+  const openPaymentSheet = async () => {
+    if (!clientSecret) {
+      return;
+    }
+        // @ts-ignore
+    const {error} = await presentPaymentSheet({clientSecret});
 
-//     if (error) {
-//       Alert.alert(`Payment Status: ${error.code}`, `${error.message}. Please try again!`);
-//     } else {
-//     //  
+    if (error) {
+      Alert.alert(`Payment Status: ${error.code}`, `${error.message}. Please try again!`);
+    } else {
+     
+    Alert.alert('Payment Confirmed', 'Thank you for shopping with us! Your payment has been successfully processed. Enjoy your purchase!');
     
-//       saveOrder();
-//       Alert.alert('Payment Confirmed', 'Thank you for shopping with us! Your payment has been successfully processed. Enjoy your purchase!');
+      saveOrder();
 
-//     // Alert.alert('Success', `Your payment is confirmed!${amount}`, );
-  
-//     const orderDetails = {
-//       items: cartItems,
-//       orderUniqueId: generatedInuiqueId,
-//       // @ts-ignore
-//       subTotalPrice: route.params?.subTotalPrice || 0,
-//       // @ts-ignore
-//       tax: route.params?.tax  || 0, // Calculate tax if needed
-//       // @ts-ignore
-//       shippingFee : route.params?.shippingFee  || 0,
-//       // @ts-ignore
-//       totalPrice: route.params?.tax + route.params?.shippingFee + route.params?.subTotalPrice  || 0,
-      
-//     };
-//    setAddress('');
-//    setCity('');
-//    setFullname('');
-//    setPhone('');
-//     // @ts-ignore
-//     navigation.navigate('OrderConfirmation', { orderDetails });
-//   }
-// };
+  }
+};
 
   const saveOrder = async () => {
     // get user details
-    const userData = await Auth.currentAuthenticatedUser();
+    // const userData = await Auth.currentAuthenticatedUser();
     // create a new order
     const newOrder = await DataStore.save(
       new Order({
-        userSub: userData.attributes.sub,
+        userSub:  "Guest N: " + generatedInuiqueId,
         fullName: fullname,
         phoneNumber: phone,
-        country : country,
+        country : country + " Email" + addressEmail,
         city: city,
         address: address,
         generatedID: generatedInuiqueId,
@@ -175,37 +158,6 @@ const AddressScreen = () => {
 
 
 
-
-
-    // fetch all cart items
-    // const cartItems = await DataStore.query(CartProduct, (cp) =>
-    // // @ts-ignore
-    //   cp.userSub('eq', userData.attributes.sub),
-    // );
-
-    // attach all cart items to the order
-    // await Promise.all(
-    //   // @ts-ignore
-    //   cartItems.map(cartItem =>
-    //     DataStore.save(
-    //       new OrderProduct({
-    //         quantity: cartItem.quantity,
-    //         option: cartItem.option,
-    //         productID: cartItem.productID,
-    //         orderID: newOrder.id,
-    //       }),
-    //     ),
-    //   ),
-    // );
-
-    // delete all cart items
-    // await Promise.all(cartItems.map((cartItem) => DataStore.delete(cartItem)));
-    
-
-
-    // redirect home
-    // navigation.navigate('OrderConfirmation');
-
     const orderDetails = {
             items: cartItems,
             orderUniqueId: generatedInuiqueId,
@@ -219,6 +171,7 @@ const AddressScreen = () => {
             totalPrice: route.params?.tax + route.params?.shippingFee + route.params?.subTotalPrice  || 0,
             
           };
+        setAddressEmail('');
          setAddress('');
          setCity('');
          setFullname('');
@@ -228,8 +181,13 @@ const AddressScreen = () => {
   };
 
   const onCheckout = () => {
+  
     if (addressError) {
       Alert.alert('Fix all field errors before submiting');
+      return;
+    }
+    if (emailAddressError) {
+      Alert.alert('Please enter a valid email address!');
       return;
     }
 
@@ -244,8 +202,8 @@ const AddressScreen = () => {
     }
 
     // handle payments
-    // openPaymentSheet();
-    saveOrder();
+    openPaymentSheet();
+    // saveOrder();
    
   };
 
@@ -255,15 +213,37 @@ const AddressScreen = () => {
     }
   };
 
+
+  function validateEmail(inputText: any) {
+    // Define a regular expression pattern for a valid email format.
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+     return emailPattern.test(inputText);
+  };
+
+  const validateAddressEmail = () => {
+    if (validateEmail(addressEmail) === false || addressEmail.length < 0) {
+      setEmailddressError('Email Address is not valid!');
+    }
+  };
+
+
+
+
+
+
+
+
   const validateCity = () => {
-    if (city.length < 2) {
-      setAddressError('City is too short');
+    if (city.length < 2 || city.length === 0) {
+      // setAddressError('City is too short');
+      alert("City is too short")
     }
   };
 
   const validatePhoneNumber = () => {
     if (phone.length < 10) {
-      setAddressError('Phone number is too short');
+      // setAddressError('Phone number is too short');
+      alert("Phone number is too short")
     }
   };
 
@@ -272,8 +252,8 @@ const AddressScreen = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}>
+      behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}>
       <ScrollView style={styles.root}>
         <View style={styles.row}>
           <Picker selectedValue={country} onValueChange={setCountry}>
@@ -282,10 +262,27 @@ const AddressScreen = () => {
             ))}
           </Picker>
         </View>
+           {/* Email Address */}
+           <View style={styles.row}>
+          <Text style={styles.label}>Email Address*</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="example@gmail.com"
+            value={addressEmail}
+            onEndEditing={validateAddressEmail}
+            onChangeText={text => {
+              setAddressEmail(text);
+              setEmailddressError('');
+            }}
+          />
+           {!!emailAddressError && (
+            <Text style={styles.errorLabel}>{emailAddressError}</Text>
+          )}
+        </View>
 
         {/* Full name */}
         <View style={styles.row}>
-          <Text style={styles.label}>Full name (First and Last name)</Text>
+          <Text style={styles.label}>Full Name* (First and Last name)</Text>
           <TextInput
             style={styles.input}
             placeholder="Full Name"
@@ -296,19 +293,20 @@ const AddressScreen = () => {
 
         {/* Phone number */}
         <View style={styles.row}>
-          <Text style={styles.label}>Phone number</Text>
+          <Text style={styles.label}>Phone Number*</Text>
           <TextInput
             style={styles.input}
             placeholder="Phone Number"
             value={phone}
             onChangeText={setPhone}
+            onEndEditing={validatePhoneNumber}
             keyboardType={'phone-pad'}
           />
         </View>
 
         {/* Address */}
         <View style={styles.row}>
-          <Text style={styles.label}>Full Address(Including Zip Code)</Text>
+          <Text style={styles.label}>Full Address*(Zip Code Required)</Text>
           <TextInput
             style={styles.input}
             placeholder="Address"
@@ -326,7 +324,7 @@ const AddressScreen = () => {
 
         {/* City */}
         <View style={styles.row}>
-          <Text style={styles.label}>City</Text>
+          <Text style={styles.label}>City*</Text>
           <TextInput
             style={styles.input}
             placeholder="City"

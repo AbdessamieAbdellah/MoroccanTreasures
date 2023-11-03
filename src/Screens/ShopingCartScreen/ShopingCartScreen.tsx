@@ -13,7 +13,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { DataStore, Auth } from "aws-amplify";
 
-import { Product, CartProduct } from "../../models";
+import { Product, } from "../../models";
 import { useDispatch, useSelector } from "react-redux";
 import { Item, deleteItem, updateItemQuantity } from "../../redux/actions";
 import { Touchable } from "react-native";

@@ -6,7 +6,7 @@ import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react-native';
 import {StripeProvider} from '@stripe/stripe-react-native';
 import BottomTabs from './src/Components/BottomTab/BottomTab';
 // @ts-ignore
-import {PUBLISHABLEKEY} from "@env";
+// import {PUBLISHABLEKEY} from "@env";
 
 
 
@@ -15,13 +15,13 @@ Amplify.configure(awsconfig);
 
 export default function App() {
   return (
-<StripeProvider publishableKey={PUBLISHABLEKEY}>
+<StripeProvider publishableKey={"pk_live_51MNrUmHXziWP61w13bgXTlSNd6jhYzRpPnQqsVCjQ2rnMOmOV7xHKiLL3VgAw8hepDyvfa1Zl0G0ZE3RK4zWl9Lu001t6dnZVe"}>
 
-    <Authenticator.Provider>
-    <Authenticator>
+    {/* <Authenticator.Provider> */}
+    {/* <Authenticator> */}
     <RootNavigator/>
-  </Authenticator>
-   </Authenticator.Provider>
+  {/* </Authenticator> */}
+   {/* </Authenticator.Provider> */}
 
     </StripeProvider>
   );

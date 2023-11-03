@@ -200,13 +200,22 @@ export default function BottomTab() {
         name="Sign Out"
         component={SignOutButton}
         options={{
-          //   headerShown: false,
-
-          tabBarLabel: "Sign Out",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="sign-out" color={color} size={size} /> // Use the imported icon
-          ),
+          tabBarButton: () => null,
+           // @ts-ignore
+          tabBarVisible: false,
         }}
+
+        
+        // options={{
+        //   //   headerShown: false,
+        //    // @ts-ignore
+        //    tabBarVisible: false,
+
+        //   tabBarLabel: "Sign Out",
+        //   tabBarIcon: ({ color, size }) => (
+        //     <Icon name="sign-out" color={color} size={size} /> // Use the imported icon
+        //   ),
+        // }}
 
         // options={{
         //   tabBarButton: () => null,

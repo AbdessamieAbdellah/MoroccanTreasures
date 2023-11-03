@@ -2,7 +2,7 @@
   "expo": {
     "name": "Moroccan Treasures",
     "slug": "57e44eed-9c03-49f5-8e08-0f298227ec73",
-    "version": "1.0.1",
+    "version": "1.1.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -11,19 +11,25 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "jsEngine": "hermes",
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "io.expo.moroccanShop",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app primarily collects the following data (full name, email address, address and phone number) for its core functionality and to enhance the overall shopping experience.we are unable to offer direct account deletion functionality within the app. Users who wish to delete their accounts and associated data must submit a Deletion Request through our official website, using the following link: https://abdessamieportfolio-zeta.vercel.app/contact",
+        "ITSAppUsesNonExemptEncryption": "NO"
+      }
     },
-    "android": { 
+    "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "io.expo.moroccanShop",
-      "versionCode" : 2
+      "versionCode": 6
     },
     "web": {
       "favicon": "./assets/favicon.png"
