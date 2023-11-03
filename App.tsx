@@ -15,7 +15,7 @@ Amplify.configure(awsconfig);
 
 export default function App() {
   return (
-<StripeProvider publishableKey={"pk_live_51MNrUmHXziWP61w13bgXTlSNd6jhYzRpPnQqsVCjQ2rnMOmOV7xHKiLL3VgAw8hepDyvfa1Zl0G0ZE3RK4zWl9Lu001t6dnZVe"}>
+<StripeProvider publishableKey={""}>
 
     {/* <Authenticator.Provider> */}
     {/* <Authenticator> */}
