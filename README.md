@@ -1,15 +1,15 @@
-Moroccan Shop
+Moroccan Shop:
 Welcome to Moroccan Shop - your ultimate shopping destination for authentic Moroccan delights! 🛍️
 
 Discover the magic of Morocco in the palm of your hand with our user-friendly shopping app. Immerse yourself in a world of traditional Moroccan items like Barad, Jalabas, and so much more. Shop conveniently and experience top-notch performance as you explore a curated collection of genuine Moroccan treasures.
 
-Features
+Features:
 Browse a curated collection of traditional Moroccan items.
 Explore high-quality images and detailed descriptions of each product.
 Add items to your cart for easy purchasing.
 Adjust quantities or remove items from your cart as needed.
 Seamless checkout process for a hassle-free shopping experience.
-Getting Started
+Getting Started:
 To get started with Moroccan Shop, follow these simple steps:
 
 Clone the repository to your local machine using git clone https://github.com/your-username/moroccan-shop.git
@@ -34,7 +34,7 @@ Submit a pull request with a detailed explanation of your changes.
 Support
 If you encounter any issues or have any questions about Moroccan Shop, please feel free to contact us at support@moroccanshop.com. We're here to help!
 
-License
+License:
 Moroccan Shop is licensed under the MIT License. Feel free to use, modify, and distribute the code for your own projects.
 
 App Store Link:
